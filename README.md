@@ -12,17 +12,18 @@ The ToDoListApplication will be able to perform below service operations.
 
 In preceding ToDoItem controller class, has defined a number of RESTful URIs as follows to operate with the resource 'ToDoItem' and it's extended entity 'ToDoItemWork'.
 
-/todoItems 				- HTTP Get # Get all ToDo items [all types ]
-/workTodoItems 			- HTTP Get # Get all ToDo items - work type
-/todoItems/{todoId} 		- HTTP Get # Get a ToDoItem for a given Id
-/workTodoItems/{todoId} 	- HTTP Get # Get a ToDoItem for a given Id
-/workTodoItems/{todoId} - HTTP Put # to update status from PENDING to COMPLETED.
-/workTodoItems/{todoId} - HTTP Patch # to update the status based on the date created and current status. To move the item to the INACTIVE list.
-/workTodoItems/{todoId} - HTTP Delete # to delete item - ToDoItemWork
-/newTodoItem 			- HTTP Post # Get a ToDoItemWork for a given Id
-/workTodoItems/{ids} 	- HTTP Put # restore inactive list of ToDo items
+- /todoItems 				- HTTP Get # Get all ToDo items [all types ]
+- /workTodoItems 			- HTTP Get # Get all ToDo items - work type
+- /todoItems/{todoId} 		- HTTP Get # Get a ToDoItem for a given Id
+- /workTodoItems/{todoId} 	- HTTP Get # Get a ToDoItem for a given Id
+- /workTodoItems/{todoId} 	- HTTP Put # to update status from PENDING to COMPLETED.
+- /workTodoItems/{todoId} 	- HTTP Patch # to update the status based on the date created and current status. To move the item to the INACTIVE list.
+- /workTodoItems/{todoId} 	- HTTP Delete # to delete item - ToDoItemWork
+- /newTodoItem 				- HTTP Post # Get a ToDoItemWork for a given Id
+- /workTodoItems/{ids} 		- HTTP Put # restore inactive list of ToDo items
 
 ### Swagger 2
+
 Swagger 2 is an open-source project and has been used in this application to describe and document RESTful APIs.
 Please see the following end-points using Swagger UI.
 
@@ -31,7 +32,7 @@ Please see the following end-points using Swagger UI.
 ## git setup
 
 You can clone using the https url with the following command:
-    git clone https://github.com/dmadhawaw/SuperrDuperr.git - TODOODOODODDODO
+    git clone https://github.com/dmadhawaw/Superr-Duperr.git
     
 ## Setup & Run microservice
 
@@ -49,10 +50,10 @@ This application can be run  as a spring-boot JAR file or Docker container (-> D
 
 Once application is cloned in to the local folder , then you will have to run the below commands in the /SuperrDuperr folder:
 
-mvn clean install - ‘this will download all the dependencies into the m2 repository. It compiles all Java sources and package them into one JAR file.’
-java -jar target/todoapp-0.0.1-SNAPSHOT.jar - this will invoke the JAR file and will launch the application.
+> mvn clean install - ‘this will download all the dependencies into the m2 repository. It compiles all Java sources and package them into one JAR file.’
+> java -jar target/todoapp-0.0.1-SNAPSHOT.jar - this will invoke the JAR file and will launch the application.
 
-###Docker Setup
+### Docker Setup
 
 The superr-duperr microservice container image has been uploaded into the DockerHub.
 
@@ -62,7 +63,7 @@ To run the service please execute below command:
 > docker run -p 8080:8080 todo-list-service/todo-list-service-v1 //TODO
 
 
-##To Build the container locally 
+## To Build the container locally 
 > docker build -t todo-list-service/todo-list-service-v1 .
 > docker run -p 8080:8080 todo-list-service/todo-list-service-v1 //Correct
 
