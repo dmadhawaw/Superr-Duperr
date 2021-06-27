@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "17614b60-caf2-48ed-a294-dc900ba2ba80",
+		"name": "superr-duperr-service-v1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "todolsit_PostmanCollection",
+			"item": [
+				{
+					"name": "Get all TodoItems",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/todoItems/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"todoItems",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get TodoItem by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/todoItems/101",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"todoItems",
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all TodoItemWorks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/todoItems/101",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"todoItems",
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add a new TodoItemWork",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/todoItems/101",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"todoItems",
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get TodoItemWork by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/todoItems/101",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"todoItems",
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update TodoItemWork to Completed",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"task\": \"Meeting\",\n    \"status\": \"Completed\",\n    \"priority\": \"LOW\",\n    \"todolist_type\": \"WORK_LIST\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/workTodoItems/103",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workTodoItems",
+								"103"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update TodoItemWork to Inactive",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"task\": \"Meeting\",\n    \"status\": \"Completed\",\n    \"priority\": \"LOW\",\n    \"todolist_type\": \"WORK_LIST\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/workTodoItems/103",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"workTodoItems",
+								"103"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
