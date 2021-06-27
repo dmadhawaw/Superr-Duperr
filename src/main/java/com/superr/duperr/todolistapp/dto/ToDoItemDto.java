@@ -3,16 +3,21 @@ package com.superr.duperr.todolistapp.dto;
 import java.util.Date;
 
 import com.superr.duperr.todolistapp.domain.ToDoItem;
-import com.superr.duperr.todolistapp.domain.ToDoItemWork;
+
+import io.swagger.annotations.ApiModelProperty;
 
 public class ToDoItemDto {
 
+	@ApiModelProperty(notes = "The database generated todo ID")
 	private long todoId;
 
+	@ApiModelProperty(notes = "The task name/description")
 	private String task;
 
+	@ApiModelProperty(notes = "The ToDo item status can be Pending/Completed/Inactive")
 	private String status;
 
+	@ApiModelProperty(notes = "The date created the ToDo item")
 	private Date dateCreated;
 
 	/**

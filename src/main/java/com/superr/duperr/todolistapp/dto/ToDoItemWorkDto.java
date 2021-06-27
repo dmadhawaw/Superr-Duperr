@@ -20,6 +20,7 @@ public class ToDoItemWorkDto {
 	@NotNull
 	private String task;
 
+	@NotNull
 	private String status;
 
 	private String priority;

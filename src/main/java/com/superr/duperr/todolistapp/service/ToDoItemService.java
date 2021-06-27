@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.superr.duperr.todolistapp.repository.ToDoItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,6 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.superr.duperr.todolistapp.data.repository.ToDoItemRepository;
 import com.superr.duperr.todolistapp.domain.ToDoItem;
 import com.superr.duperr.todolistapp.domain.ToDoItemWork;
 import com.superr.duperr.todolistapp.dto.ToDoItemDto;
@@ -105,9 +105,9 @@ public class ToDoItemService {
 	 * @param dto    WorkToDoItem Data Transfer Object
 	 * @return The WorkToDoItem DTO.
 	 */
-	public ToDoItemWorkDto updateWorkToDoItemWithPut(long todoId, ToDoItemWorkDto dto) {
+	public ToDoItemWorkDto updateToDoItemStatus(long todoId, ToDoItemWorkDto dto) {
 		ToDoItemWork todoItem = verifyToDoItem(todoId);
-		// add check to complete.
+		// add check to complete.TODO
 		todoItem.setStatus(ToDoStatus.findByStatus(dto.getStatus()).toString());
 		todoItem.setPriority(Priority.fromString(dto.getPriority()).toString());
 		return new ToDoItemWorkDto(toDoItemRepository.save(todoItem));
@@ -121,7 +121,7 @@ public class ToDoItemService {
 	 * @param dto    WorkToDoItem Data Transfer Object
 	 * @return The WorkToDoItem DTO.
 	 */
-	public ToDoItemWorkDto updateWorkToDoItemWithPatch(long todoId, ToDoItemWorkDto dto) {
+	public ToDoItemWorkDto updateToDoItemToInactive(long todoId, ToDoItemWorkDto dto) {
 		ToDoItemWork todoItem = verifyToDoItem(todoId);
 		ZonedDateTime now = ZonedDateTime.now();
 		ZonedDateTime thirtyDaysAgo = now.plusDays(-30);
@@ -134,8 +134,12 @@ public class ToDoItemService {
 		return new ToDoItemWorkDto(toDoItemRepository.save(todoItem));
 	}
 
+	/**
+	 * Update list of inactive todo item ids to active [INACTIVE -> PENDING]
+	 *
+	 * @param ids list of ToDoItemWork identifiers
+	 */
 	public void restoreTodoItem(String ids) {
-
 		if (!ids.isEmpty()) {
 			List<String> todoIds = Arrays.asList(ids.split(","));
 			if (!CollectionUtils.isEmpty(todoIds)) {

@@ -47,7 +47,7 @@ public class ToDoItemControllerUnitTest {
 	}
 
 	/*
-	 * Test method for 'getToDoItem' and JSON content contains the specific todoItem
+	 * Test method for 'getToDoItem' and verify JSON content contains the specific todoItem
 	 * details for given todoId.
 	 */
 	@Test
@@ -67,7 +67,7 @@ public class ToDoItemControllerUnitTest {
 	}
 
 	/*
-	 * Test method for 'getToDoItem' and JSON content contains the specific todoItem
+	 * Test method for 'getToDoItem' and verify JSON content contains the specific todoItem
 	 * details for given todoId.
 	 */
 	@Test
@@ -88,7 +88,7 @@ public class ToDoItemControllerUnitTest {
 	}
 
 	/*
-	 * Test method for 'getAllToDoItems' and JSON content contains details.
+	 * Test method for 'getAllToDoItems' and verify JSON content contains all the doDoItem details.
 	 */
 	@Test
 	void whenGetAllToDoItems_returnJsonContent() throws Exception {
@@ -135,7 +135,7 @@ public class ToDoItemControllerUnitTest {
 	}
 
 	/*
-	 * Test method for 'getAllToDoWORKItems' and JSON content contains details.
+	 * Test method for 'getAllToDoWORKItems' and verify JSON content contains all Work todo item details.
 	 */
 	@Test
 	void whenGetAllToDoWORKItems_returnJsonContent() throws Exception {
@@ -151,7 +151,7 @@ public class ToDoItemControllerUnitTest {
 		itemToDoTwo.setTodoId(Long.valueOf(122));
 		itemToDoTwo.setTask("TestTast2");
 		itemToDoTwo.setStatus("Completed");
-		itemToDoOne.setPriority("M");
+		itemToDoOne.setPriority("Medium");
 		itemToDoTwo.setDateCreated(new Date());
 
 		ToDoItemWork itemToDoThree = new ToDoItemWork();

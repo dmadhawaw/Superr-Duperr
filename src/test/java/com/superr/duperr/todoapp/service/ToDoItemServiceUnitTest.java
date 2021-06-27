@@ -17,7 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.superr.duperr.todolistapp.data.repository.ToDoItemRepository;
+import com.superr.duperr.todolistapp.repository.ToDoItemRepository;
 import com.superr.duperr.todolistapp.domain.ToDoItem;
 import com.superr.duperr.todolistapp.domain.ToDoItemWork;
 import com.superr.duperr.todolistapp.dto.ToDoItemDto;

@@ -1,5 +1,7 @@
 package com.superr.duperr.todolistapp.controller;
 
+import static org.springframework.http.ResponseEntity.noContent;
+
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 
@@ -15,20 +17,26 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.superr.duperr.todolistapp.domain.ToDoItemWork;
 import com.superr.duperr.todolistapp.dto.ToDoItemWorkDto;
 import com.superr.duperr.todolistapp.service.ToDoItemService;
-import static org.springframework.http.ResponseEntity.*;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 /**
  * ToDoItem Controller
- * 
+ *
  * @author dineshwijekoon
  *
  */
+
 @RestController
+@Api(value = "This is the main Controller class for ToDoService")
 @Validated
 public class ToDoItemController {
 
@@ -41,10 +49,14 @@ public class ToDoItemController {
 
 	/**
 	 * Lookup for all todoItems.
-	 * 
+	 *
 	 * @return List of all todoItems
 	 */
 	@GetMapping(value = "/todoItems")
+	@ApiOperation(value = "DESCRIPTION", responseContainer = "List", response = ToDoItemWork.class)
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Contact created"),
+			@ApiResponse(code = 400, message = "Invalid input"),
+			@ApiResponse(code = 409, message = "Contact already exists") })
 	public ResponseEntity<?> getAllToDoItems() {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		return new ResponseEntity<>(toDoItemService.getAllToDoItems(), httpHeaders, HttpStatus.OK);
@@ -57,6 +69,10 @@ public class ToDoItemController {
 	 * @return Requested ToDoItem for given todoId identifier
 	 */
 	@GetMapping(value = "/todoItems/{todoId}")
+	@ApiOperation(value = "Get ToDoItem for given todo Id ", response = Iterable.class, tags = "getToDoItem")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success|OK"),
+			@ApiResponse(code = 401, message = "not authorized!"), @ApiResponse(code = 403, message = "forbidden!!!"),
+			@ApiResponse(code = 404, message = "not found!!!") })
 	public ResponseEntity<?> getToDoItem(@PathVariable(value = "todoId") long todoId) {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		return new ResponseEntity<>(toDoItemService.getToDoItem(todoId), httpHeaders, HttpStatus.OK);
@@ -64,10 +80,14 @@ public class ToDoItemController {
 
 	/**
 	 * Lookup for all workTodoItems.
-	 * 
-	 * @return List of all ToDoItemWorkDtos
+	 *
+	 * @return List of all workTodoItems
 	 */
 	@GetMapping(value = "/workTodoItems")
+	@ApiOperation(value = "DESCRIPTION", responseContainer = "List", response = ToDoItemWorkDto.class)
+	@ApiResponses(value = { @ApiResponse(code = 201, message = "Contact created"),
+			@ApiResponse(code = 400, message = "Invalid input"),
+			@ApiResponse(code = 409, message = "Contact already exists") })
 	public ResponseEntity<?> getAllWorkToDoItems() {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		return new ResponseEntity<>(toDoItemService.getAllWorkToDoItems(), httpHeaders, HttpStatus.OK);
@@ -80,6 +100,10 @@ public class ToDoItemController {
 	 * @return Requested ToDoItemWork for given todoId identifier
 	 */
 	@GetMapping(value = "/workTodoItems/{todoId}")
+	@ApiOperation(value = "Get ToDoItemWork for given todo Id ", response = Iterable.class, tags = "getToDoItemWork")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Success|OK"),
+			@ApiResponse(code = 401, message = "not authorized!"), @ApiResponse(code = 403, message = "forbidden!!!"),
+			@ApiResponse(code = 404, message = "not found!!!") })
 	public ResponseEntity<?> getToDoItemWork(@PathVariable(value = "todoId") long todoId) {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		return new ResponseEntity<>(toDoItemService.getToDoItemWork(todoId), httpHeaders, HttpStatus.OK);
@@ -90,8 +114,8 @@ public class ToDoItemController {
 	 *
 	 * @param workToDoItemDto rating dataWorkToDoItem data transfer object//TODO
 	 */
-	@PostMapping(value = "/newTodoItem")
-	@ResponseStatus(HttpStatus.CREATED)
+	@PostMapping(value = "/newTodoItem", consumes = { "application/json", "application/xml" })
+	@ApiOperation(value = "Add a new ToDoItem")
 	public ResponseEntity<?> addToDoItem(@Valid @RequestBody ToDoItemWorkDto newDto) {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		return new ResponseEntity<>(toDoItemService.addToDoItem(newDto), httpHeaders, HttpStatus.OK);
@@ -105,9 +129,10 @@ public class ToDoItemController {
 	 * @return The modified WorkToDoItemDto DTO.
 	 */
 	@PutMapping(value = "/workTodoItems/{todoId}")
+	@ApiOperation(value = "Update a ToDoItemWOrk item status to COMPLETED")
 	public ToDoItemWorkDto updateWorkToDoItem(@PathVariable(value = "todoId") @Min(1) long todoId,
 			@Valid @RequestBody ToDoItemWorkDto dto) {
-		return toDoItemService.updateWorkToDoItemWithPut(todoId, dto);
+		return toDoItemService.updateToDoItemStatus(todoId, dto);
 	}
 
 	/**
@@ -116,6 +141,7 @@ public class ToDoItemController {
 	 * @param ids list of ToDoItemWork identifiers
 	 */
 	@PutMapping(value = "/workTodoItems")
+	@ApiOperation(value = "Restore todoItem list of ids from state INACTIVE to PENDING")
 	public ResponseEntity<Void> restoreToDoItems(@RequestBody String ids) {
 		if (!ids.isEmpty()) {
 			toDoItemService.restoreTodoItem(ids);
@@ -131,9 +157,10 @@ public class ToDoItemController {
 	 * @return The modified WorkToDoItemDto DTO.
 	 */
 	@PatchMapping(value = "/workTodoItems/{todoId}")
-	public ToDoItemWorkDto updateWorkToDoItemStatus(@PathVariable(value = "todoId") long todoId,
+	@ApiOperation(value = "Update a ToDoItemWork item status to Inactive")
+	public ToDoItemWorkDto updateToDoItemToInactive(@PathVariable(value = "todoId") long todoId,
 			@Valid @RequestBody ToDoItemWorkDto dto) {
-		return toDoItemService.updateWorkToDoItemWithPatch(todoId, dto);
+		return toDoItemService.updateToDoItemToInactive(todoId, dto);
 	}
 
 	/**
@@ -142,6 +169,7 @@ public class ToDoItemController {
 	 * @param todoId workTodoItem identifier
 	 */
 	@DeleteMapping(path = "/workTodoItems/{todoId}")
+	@ApiOperation(value = "delete a ToDoItemWork")
 	public void delete(@PathVariable(value = "todoId") long todoId) {
 		toDoItemService.delete(todoId);
 	}

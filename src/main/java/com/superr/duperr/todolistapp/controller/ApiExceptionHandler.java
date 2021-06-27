@@ -7,9 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +24,9 @@ import com.superr.duperr.todolistapp.api.ApiResponse;
 import com.superr.duperr.todolistapp.api.ErrorResponse;
 import com.superr.duperr.todolistapp.exception.ResourceNotFoundException;
 import com.superr.duperr.todolistapp.exception.ToDoListErrorCode;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 
 @RestControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {

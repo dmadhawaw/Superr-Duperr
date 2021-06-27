@@ -13,6 +13,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.sun.istack.NotNull;
+
+import io.swagger.annotations.ApiModelProperty;
 
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
@@ -20,16 +23,23 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @DiscriminatorColumn(name = "TODOLIST_TYPE")
 public class ToDoItem {
 
+	@ApiModelProperty(notes = "The database generated todo ID")
+	@NotNull
 	private Long todoId;
 
+	@ApiModelProperty(notes = "The task name/description")
+	@NotNull
 	private String task;
 
+	@ApiModelProperty(notes = "The ToDo item status can be Pending/Completed/Inactive")
+	@NotNull
 	private String status;
 
+	@ApiModelProperty(notes = "The date created the ToDo item")
 	private Date dateCreated;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "todo_id")
 	public Long getTodoId() {
 		return todoId;
@@ -58,7 +68,7 @@ public class ToDoItem {
 	}
 
 	@Column(name = "date_created")
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	public Date getDateCreated() {
 		return dateCreated;
 	}
