@@ -27,6 +27,8 @@ In preceding ToDoItem controller class, has defined a number of RESTful URIs as 
 Swagger 2 is an open-source project and has been used in this application to describe and document RESTful APIs.
 Please see the following end-points using Swagger UI.
 
+![image](https://user-images.githubusercontent.com/71108680/123565971-e399b380-d801-11eb-98ac-5a898257953e.png)
+
 - http://localhost:8080/swagger-ui.html#/
 
 ## git setup
