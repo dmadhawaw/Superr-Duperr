@@ -29,7 +29,7 @@ public class SwaggerConfiguration {
 
 	private ApiInfo apiInfo() {
 		ApiInfo apiInfo = new ApiInfo("Superr-Duperr REST API - ToDo List Microservice",
-				"Application manager REST API documentation.", "API 1.0",
+				"Swagger REST API documentation.", "API 1.0",
 				"Terms of service based into company terms of use",
 				new Contact("DineshWijekoon", null, "dmadhawa@gmail.com"), "License of API for DineshWijekoon use only",
 				null, Collections.emptyList());

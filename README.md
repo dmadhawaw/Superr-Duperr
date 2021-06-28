@@ -60,12 +60,12 @@ The superr-duperr microservice container image has been uploaded into the Docker
 To run the service please execute below command:
 
 ### Run service from DockerHub
-> docker run -p 8080:8080 todo-list-service/todo-list-service-v1 //TODO
+> docker run -p 8080:8080 dwijekoon/todo-list-service-v1
 
 
 ## To Build the container locally 
 > docker build -t todo-list-service/todo-list-service-v1 .
-> docker run -p 8080:8080 todo-list-service/todo-list-service-v1 //Correct
+> docker run -p 8080:8080 todo-list-service/todo-list-service-v1
 
 To access the application : 
 > http://localhost:8080/
