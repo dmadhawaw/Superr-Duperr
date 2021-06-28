@@ -1,4 +1,4 @@
-# SuperrDuperr - ToDoListApplication
+## SuperrDuperr - ToDoListApplication
 
 The ToDoListApplication will be able to perform below service operations.
 
@@ -73,7 +73,7 @@ To access the application :
 
 ### ToDoListApplication
 
-ToDoListApplication application mainly has 'TodoItemController' which is the main end point has exposed as REST API and application logic has been written in the service level and data will be retrieved via JPA data repositories, apart from the JPA entity classes has been defined and database scripts to generate initial ToDoItem list has been setup to instantiate at the time of application loading via FlyWay. The exception handling for mainly resource 'NOT_FOUND' & 'BAD_REQUEST' has been implemented via the Spring Controller Advice class.
+The ToDoListApplication service mainly has 'TodoItemController' which is the main end point which is exposed as REST API and application logic has been written in the service level and data will be retrieved via JPA data repositories. Apart from that, the JPA entity classes has been defined. Database scripts to generate initial ToDoItem list has been setup to instantiate at the time of application loading via the FlyWay. The exception handling has been centralized via the Controller Advice class and will handle mainly resource 'NOT_FOUND' & 'BAD_REQUEST'.
 
 - TodoItemController RESTful API has been exposed and each request will be delegated to the ToDoItemService and will manipulate the request integrating required data components and data will be retrieved accordingly.
 - API Controller Advice has been implemented to manipulate exception handling for HttpStatus code NOT_FOUND & BAD_REQUEST. A custom exception has been implemented to manage ‘ResourceNotFoundException’.
